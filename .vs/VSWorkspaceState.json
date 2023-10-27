@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\test",
+    "\\src\\test\\java",
+    "\\src\\test\\java\\model",
+    "\\src\\test\\java\\model\\pages",
+    "\\src\\test\\java\\test",
+    "\\src\\test\\TC01",
+    "\\target",
+    "\\target\\test-classes"
+  ],
+  "SelectedNode": "\\src\\test\\TC01\\LaunchGuru.java",
+  "PreviewInSolutionExplorer": false
+}
