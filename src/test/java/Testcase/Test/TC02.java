@@ -14,16 +14,16 @@ public class TC02 {
     public void testECommerceVerifyProductCost() {
         driver = new ChromeDriver();
 
-        //  Go to http://live.techpanda.org/
+        //  Step1: Go to http://live.techpanda.org/
         driver.get("http://live.techpanda.org/");
 
-        // Click on MOBILE menu
+        // Step 2: Click on MOBILE menu
         WebElement mobileMenu = driver.findElement(By.linkText("MOBILE"));
         mobileMenu.click();
 
         // Step 3: Read the cost of Sony Xperia mobile
         WebElement sonyXperiaProduct = driver.findElement(By.xpath("//a[@title='Sony Xperia']"));
-        WebElement priceElement = sonyXperiaProduct.findElement(By.cssSelector("span[id='product-price-1'] span[class='price']"));
+        WebElement priceElement = sonyXperiaProduct.findElement(By.xpath("//span[contains(text(),'$100.00')]"));
         String listPagePrice = priceElement.getText();
         System.out.println("Cost of Sony Xperia on list page: " + listPagePrice);
 
@@ -31,10 +31,16 @@ public class TC02 {
         sonyXperiaProduct.click();
 
         // Step 5: Read the Sony Xperia mobile from the detail page
-        String detailPagePrice = driver.findElement(By.cssSelector(".price")).getText();
 
+        WebElement descriptionElement = driver.findElement(By.cssSelector("div[class='tab-content'] div[class='std']"));
+        String description = descriptionElement.getText();
+        System.out.println("Description of Sony Xperia: " + description);
         // Step 6: Compare Product value in list and details page
-        assert listPagePrice.equals(detailPagePrice) : "Product cost in list page and details page are not equal";
+
+        WebElement detailsPagePriceElement = driver.findElement(By.xpath("//span[@class='price']"));
+        String detailsPagePrice = detailsPagePriceElement.getText();
+        System.out.println("Cost of Sony Xperia on details page: " + detailsPagePrice );
+        assert listPagePrice.equals(detailsPagePrice) : "Product cost in list page and details page are not equal";
 
         // Close the browser at the end of the test
         driver.quit();
