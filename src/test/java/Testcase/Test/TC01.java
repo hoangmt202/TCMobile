@@ -19,10 +19,10 @@ public class TC01 {
 
         driver = new ChromeDriver();
 
-        // Go to http://live.techpanda.org/
+        // Step 1: Go to http://live.techpanda.org/
         driver.get("http://live.techpanda.org/");
 
-        // Click on MOBILE menu
+        // Step 2: Click on MOBILE menu
         WebElement mobileMenu = driver.findElement(By.linkText("MOBILE"));
         mobileMenu.click();
 
