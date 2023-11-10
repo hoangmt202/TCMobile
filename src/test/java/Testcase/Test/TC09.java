@@ -2,12 +2,13 @@ package Testcase.Test;
 import Testcase.model.LoginPage;
 import Testcase.model.CartPage;
 import Testcase.model.MobilePage;
-import Testcase.model.CompareMobile;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+
 @Test
 public class TC09 {
     private WebDriver driver;
@@ -31,17 +32,17 @@ public class TC09 {
             // enter code
             mobilePage.enterCouponCode("GURU50");
             // verify
-            WebElement subTotalElement = driver.findElement(By.xpath("//tbody//span[@class='price'][normalize-space()='$14,650.00']"));
-            String currentTotal = subTotalElement.getText();
-            String expectedTotal = "$13917.50" ;
-            if (currentTotal.equals(expectedTotal)) {
-                System.out.println("Grand Total is the same as expected: " + expectedTotal);
-            } else {
-                System.out.println("Grand Total didn't change: " + currentTotal);
-            }
+            WebElement ActualDiscount = driver
+                    .findElement(By.xpath("(//td[@colspan='1'])[3]"));
+            String ExpectedDiscount = "DISCOUNT (GURU50)";
+            Assert.assertNotEquals(ActualDiscount.getText(), ExpectedDiscount);
+
+
         } catch (Exception e) {
-            driver.quit();
+            e.printStackTrace();
         }
-        ;
+        //  Quit browser session
+        driver.quit();
     }
+
 }
